@@ -33,10 +33,11 @@ class ProjectController extends Controller
         ]);
     }
 
-    public function show($slug)
-    {
-        $project = Project::with('type', 'tecnologies', 'user')->where('slug',$slug)->first();
-        // $project->load('category', 'tags');
+    public function show(Project $project)
+    {   
+
+        // $project = Project::with('type', 'tecnologies', 'user')->where('slug',$slug)->first();
+        $project->load('type', 'tecnologies', 'user');
 
         return response()->json([
             'results' => $project,
