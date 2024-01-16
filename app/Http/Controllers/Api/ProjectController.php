@@ -23,4 +23,16 @@ class ProjectController extends Controller
             'tecnologies' => $tecologies
         ]);
     }
+
+    public function show($slug)
+    {
+        $project = Project::with('type', 'tecnologies', 'user')->where('slug',$slug)->first();
+        // $project->load('category', 'tags');
+
+        return response()->json([
+            'results' => $project,
+            'success' => true,
+        ]);
+    }
+
 }
