@@ -13,14 +13,23 @@ class ProjectController extends Controller
     {
         $data = $request->all();
 
-        $results = Project::with('type', 'tecnologies', 'user')->paginate($data['qtyForPage']);
+
+        $results_projects = Project::with('type', 'tecnologies', 'user');
+        
+        // if (true) {
+        //     $results_projects = $results_projects->where('type_id', '2');
+        // }
+
+        $results_projects = $results_projects->paginate($data['qtyForPage']);
         $tecologies = Tecnology::all();
 
         return response()->json([
-            'results' => $results,
+            'results' => [
+                'projects' => $results_projects,
+                'tecnologies' => $tecologies,
+            ],
             'success' => true,
             'request' => $data,
-            'tecnologies' => $tecologies
         ]);
     }
 
