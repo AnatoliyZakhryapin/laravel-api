@@ -49,6 +49,7 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
+        dd($request);
         $data = $request->all();
         // Creamo lo slug
         $data['slug'] = Str::slug($data['title'], '-');

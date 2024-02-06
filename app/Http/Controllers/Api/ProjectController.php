@@ -25,9 +25,9 @@ class ProjectController extends Controller
         }
 
 
-        // if (isset($data['formRequest']['tecnologiesSelected'])) {
-        //     $results_projects = $results_projects->whereIn('type_id', $data['formRequest']['tecnologiesSelected']);
-        // }
+        if (isset($data['formRequest']['tecnologiesSelected'])) {
+            $results_projects = $results_projects->whereIn('type_id', $data['formRequest']['tecnologiesSelected']);
+        }
 
         // dd($results_projects->get());
 

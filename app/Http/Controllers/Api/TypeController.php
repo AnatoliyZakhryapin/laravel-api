@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\Type;
 use App\Http\Requests\StoreTypeRequest;
 use App\Http\Requests\UpdateTypeRequest;
+use App\Models\Project;
 
 class TypeController extends Controller
 {
@@ -37,7 +39,14 @@ class TypeController extends Controller
      */
     public function show(Type $type)
     {
-        //
+        $type->load('projects');
+
+        // $projects = Project::where('types_id', $type->id)->orderBy('updated_at', 'desc')->paginate(10);
+
+        return response()->json([
+            'type' => $type,
+            // 'projects' => $projects,
+        ]);
     }
 
     /**
